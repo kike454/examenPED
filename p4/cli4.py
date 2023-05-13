@@ -13,8 +13,9 @@ def cliente(server_address, fichero):
     try:
         mensaje = fichero
         resp1 = 'Dirección fichero: {!r}'.format(mensaje)
+        encode1 = resp1.encode()
         #print('Dirección fichero: {!r}'.format(mensaje))
-        os.write(2,b'resp1')
+        os.write(2,encode1)
         s.sendall(mensaje.encode('utf8'))
 
         while True:
@@ -26,7 +27,8 @@ def cliente(server_address, fichero):
 
     finally:
         resp2 = 'Cerrando socket ...'
-        os.write(2,b'resp2')
+        encode2 = resp2.encode()
+        os.write(2,encode2)
         #print("Cerrando socket...")
         s.close()
 
@@ -37,7 +39,10 @@ if __name__ == "__main__":
         address = "/tmp/ped1_group1"
         file = sys.argv[1]
     else:
-        print("Introduzca la ruta del fichero: ")
+        resp3 = "Introduzca la ruta del fichero: \n"
+        encode3 = resp3.encode()
+        os.write(2,encode3)
+        #print("Introduzca la ruta del fichero: ")
         exit(1)
 
     cliente(address, file)

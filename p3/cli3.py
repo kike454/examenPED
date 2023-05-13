@@ -28,6 +28,9 @@ def cliente(path):
 
 if __name__ == "__main__":
 	if len(sys.argv) != 2:
-            print("Introduzca la ruta del fichero:" )
+            resp1 = "Introduzca la ruta del fichero: \n"
+            encode1 = resp1.encode()
+            os.write(2,encode1)
+            #print("Introduzca la ruta del fichero:" )
             exit(1)
 	cliente(sys.argv[1])

@@ -6,7 +6,8 @@
 - `Ejecutar la aplicacion con el fichero /etc/services`: make services 
 - `Ejecutar la aplicacion con el fichero /bin/sh`: make binary `
 
-<blockquote><p> El cliente le envia el nombre de un fichero al servidor y este le devuelve su contenido. El servidor crea y lee el FIFO /tmp/ped1_group1 para que luego el cliente lo abra y escriba su PID y el nombre del fichero. Seguidamente, el servidor abre tanto el fichero como el FIFO del cliente para devolver el contenido al otro extremo, es decir, al cliente. </p> </blockquote> 
+
+<blockquote><p> La conexión mediante pipes entre un cliente y un servidor es un mecanismo de comunicación interproceso (IPC) que permite el intercambio de datos entre dos procesos diferentes que se ejecutan en la misma máquina. El proceso servidor crea un pipe con nombre o un pipe anónimo y espera a que el cliente se conecte a él. El cliente, a su vez, abre el pipe y se conecta al servidor. La comunicación a través de pipes es unidireccional, lo que significa que cada proceso debe tener su propio conjunto de pipes para enviar y recibir datos. A partir de este momento, ambos procesos pueden leer y escribir datos en el pipe de forma bidireccional. </p> </blockquote>
 
 
 

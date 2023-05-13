@@ -1,13 +1,15 @@
 import os
 import sys
 import setproctitle
+import json
+
 if len(sys.argv) != 2:
-    print("Introduzca la ruta del fichero del cual desea leer su contenido: " )
+    #print("Introduzca la ruta del fichero del cual desea leer su contenido: " )
+    resp1 = " Introduzca la ruta del fichero del cual desea leer su contenido \n"
+    encode1 = resp1.encode()
+    os.write(2, encode1)
     exit(1)
 
-#def setproctitle(title: str) -> None:
-   # logger.debug("setproctitle C module not available")
-    #return None
 
 
 #lo que escribe el cliente se lee en el servidor
@@ -20,7 +22,11 @@ pid = os.fork()
 if pid:
     
     setproctitle.setproctitle("serv2")
-    print("nombre proceso:", setproctitle.getproctitle())
+    #print("nombre proceso servidor:", setproctitle.getproctitle())
+    resp2 = "nombre proceso padre (servidor): ", setproctitle.getproctitle() 
+    resp3 = json.dumps(resp2)
+    encode2 = resp3.encode()
+    os.write(2, encode2)
 # padre
     os.close(cliente_lee)
     os.close(cliente_escribe)
@@ -41,6 +47,10 @@ else:
 # hijo
     #setproctitle(cli)
     setproctitle.setproctitle("cli2")
+    resp4 = "nombre proceso hijo (servidor): ", setproctitle.getproctitle()
+    resp5 = json.dumps(resp4)
+    encode3 = resp5.encode()
+    os.write(2, encode3)
 
     os.close(servidor_escribe)
     os.close(servidor_lee)
@@ -52,6 +62,8 @@ else:
     cliente_escribeFichero.close()
     client_leeFichero = os.fdopen(cliente_lee, 'r')
     contenidoFichero = client_leeFichero.read()
-    print(contenidoFichero)
+    bytesFile = contenidoFichero.encode()
+    os.write(1,bytesFile)
+    #print(contenidoFichero)
 
     

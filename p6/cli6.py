@@ -18,7 +18,8 @@ def client(server_address, server_port, file_name):
             os.write(1, data)
     finally:
         resp1 = 'Cerrando socket'
-        os.write(2,b'resp1')
+        encode1 = resp1.encode()
+        os.write(2,encode1)
         s.close()
 
 if __name__ == "__main__":
@@ -31,7 +32,9 @@ if __name__ == "__main__":
         port = int(sys.argv[2])
         file = sys.argv[3]
     else:
-        print("Error en los argumentos")
+        resp2 = "Intriduzca la ruta del fichero: \n"
+        encode2 = resp2.encode()
+        os.write(2,encode2)
         exit(1)
 
     client(address, port, file)

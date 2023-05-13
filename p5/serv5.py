@@ -4,11 +4,9 @@ import setproctitle
 
 setproctitle.setproctitle("serv5")
 
-#Create UDP socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-#Bind the socket to the port
-server_address = ('127.0.0.1', 10000)
+server_address = ('127.0.0.1', 1030)
 
 print('Empezando en la dirección {} con el puerto {}'.format(*server_address))
 sock.bind(server_address)
