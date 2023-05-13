@@ -4,7 +4,7 @@
 
 - `Ejecutar la aplicacion con el comando make usando el fichero ubicado dentro del directorio `: make socketsUDP 
 - `Ejecutar la aplicacion con el fichero /etc/services`: make services 
-- `Ejecutar la aplicacion con el fichero /bin/sh`: make binary `
+- `Ejecutar la aplicacion con el fichero /bin/sh`: make binary 
 
 
 <blockquote><p> Tanto el cliente como el servidor crean un socket udp y especifican un puerto para escuchar los datagramas entrantes. Luego, el cliente envia los datagramas a la direccion IP y el puerto del servidor, y el servidor los recibe y los procesa. Cada datagrama se envia de forma independiente y no se establece una conexion previa entre ambos extremos de la comunicacion,es decir, la comunicacion es no orientada a conexion.  </blockquote></p>
