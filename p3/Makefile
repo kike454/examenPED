@@ -6,12 +6,13 @@ fifo:
 
 binary:
 	@echo "Compilando y ejecutando fifos con binarios: /bin/sh"
-	python3  cli3.py & python3 serv3.py /bin/sh
+	python3  serv3.py & python3 cli3.py /bin/sh
 	pkill -f serv3.py
 
 date:
-	@echo "Compilando y ejecutando la hora con fechaHora.py"
-	python3 fechaHora.py 
+	@echo "Compilando y ejecutando la hora"
+	python3 serv.py & python3 client.py 
+	pkill -f serv.py	
 
 
 services:

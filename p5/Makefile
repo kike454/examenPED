@@ -10,8 +10,9 @@ binary:
 	pkill -f serv5.py
 
 date:
-	@echo "Compilando y ejecutando la hora con fechaHora.py"
-	python3 fechaHora.py 
+	@echo "Compilando y ejecutando la hora"
+	python3 serverHour.py & python3 clientHour.py
+	pkill -f serverHour.py
 
 
 services:

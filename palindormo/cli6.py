@@ -14,17 +14,20 @@ def client(server_address, server_port, file_name):
         data = s.recv(bufferSize)
         if data == "fin_de_fichero":
             break
-        os.write(1,b'\n' )
-        print("* ")
+#        os.write(1,b'\n' )
+#        print("* ")
         os.write(1, data)
-        os.write(1,b' ' )
+#        os.write(1,b' ' )
+        #if data == 'envio_vocales':
+            #res = int(data)
+           # os.write(1,int(data))
        # print("Cerrando socket...")
         #s.close()
 
 if __name__ == "__main__":
     if len(sys.argv) == 2:
         address = "127.0.0.1"
-        port = 6553
+        port = 5119
         file = sys.argv[1]
     elif len(sys.argv) == 4:
         address = sys.argv[1]

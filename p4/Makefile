@@ -10,8 +10,8 @@ binary:
 	pkill -f serv4.py
 
 date:
-	@echo "Compilando y ejecutando la hora con fechaHora.py"
-	python3 fechaHora.py 
+	@echo "Compilando y ejecutando la hora"
+	python3 serverHour.py /tmp/ped1_group1_dateSocketsUDS & python3 clientHour.py /tmp/ped1_group1_dateSocketsUDS 
 
 
 services:
