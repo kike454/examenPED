@@ -3,10 +3,12 @@ import os
 import sys
 import time
 import struct
+from Kata import Kata
+p1 = Kata()
 bufferSize = 4096
 
-TotalNumeroVocales=0
 
+"""
 def esPalindromo(cadena):
     cadena = cadena.decode("utf-8")
     #print("cadena", cadena )
@@ -31,7 +33,7 @@ def esVocal(cadena):
     print(contador)
     #print(total)
     return contador
-        
+"""     
 
 def server(server_address, server_port):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -51,50 +53,47 @@ def server(server_address, server_port):
                 fichero = open(nombre_fichero, "rb")
                 while True:
                     data = fichero.read(bufferSize)
-                 #   print("read\n",data)
                     #palindromo
                     palabras = data.split()
-                    print(palabras)
-#                    print("hola")
+                    #print(palabras)
+                   
                     soloPalindromos = []
-#                    print("fro")
+                    #identificar palindromos
                     for e in palabras:
-                  #      print(e)
-                    #    #contador += cadena.count(caracter)
-                        if esPalindromo(e):
-                            #print("espalin")
+                  
+                        if p1.esPalindromo(e):
+                            
                             soloPalindromos.append(e)
                    # print("array",soloPalindromos)
+                   #envio palindromos
                     for p in soloPalindromos:
                     #    print("envio cliente", p)
                         conn.sendall(p + b'\n')
+                    
                     #VOCALES
-                    #conn.sendall(b'envio_vocales')
-                    j =0
+                    #
+                    
+                    totalVocales =0
                     for letter in palabras:
                         #print("letter", letter)
                         #numeroVocales = esVocal(letter)
                         #j =0
-                        print(TotalNumeroVocales)
-                        vocalTotal=esVocal(letter)
-                        j += vocalTotal
-                        print("total vocales leidas",j)
-                    #print("envio vocales")
-                    #weo = bytes(j)
-                    weo = bytearray(struct.pack('f',j))
+                        #print(TotalNumeroVocales)
+                        vocalTotalCadena= p1.esVocal(letter)
+                        totalVocales += vocalTotalCadena
+                        #print("total vocales leidas",j)
+                    
+                    weo = str(totalVocales).encode("utf8")
                     conn.sendall(weo + b'\n')
-                    print("postenvio")
+                    #print("postenvio")
+                    #numeros romanos
+                    
                     if not data:
                         time.sleep(1)
                         #fragmenta los datos y los envia de manera secuencial a un cliente conectado
-                        conn.sendall(b"fin_de_fichero")
+                        conn.sendall("fin_de_fichero".encode("utf8"))
                         break
-                    #print("onwefio")
-                    #for p in soloPalindromos:
-                     #   print("envio cliente", p)
-                      #  conn.sendall(p + b'\n')
-                    #conn.sendall(data)
-                    #palindromo()
+                    
             except FileNotFoundError:
                 conn.sendall("Error al abrir el fichero\n".encode('utf-8'))
 
@@ -106,7 +105,7 @@ if __name__ == "__main__":
 
     if len(sys.argv) == 1:
         address = "0.0.0.0"
-        port = 5119
+        port = 5111
     elif len(sys.argv) == 3:
         address = sys.argv[1]
         port = int(sys.argv[2])

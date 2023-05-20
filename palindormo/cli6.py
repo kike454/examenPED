@@ -12,7 +12,8 @@ def client(server_address, server_port, file_name):
 
     while True:
         data = s.recv(bufferSize)
-        if data == "fin_de_fichero":
+
+        if data == b"fin_de_fichero":
             break
 #        os.write(1,b'\n' )
 #        print("* ")
@@ -27,7 +28,7 @@ def client(server_address, server_port, file_name):
 if __name__ == "__main__":
     if len(sys.argv) == 2:
         address = "127.0.0.1"
-        port = 5119
+        port = 5111
         file = sys.argv[1]
     elif len(sys.argv) == 4:
         address = sys.argv[1]
