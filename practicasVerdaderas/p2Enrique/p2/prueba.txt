@@ -1,0 +1,3 @@
+Se trata de realizar una sencillo caso de aplicación cliente-servidor de ficheros.
+ El cliente se conectará al servidor mediante una tubería (pipe) y le enviará el path completo de un fichero. El servidor responderá con los contenidos de dicho fichero, o un mensaje de error si no pudiera proporcionárselos. El cliente mostrará la respuesta recibida por el 
+servidor en su salida standard.
