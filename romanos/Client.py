@@ -8,7 +8,7 @@ now = datetime.now()
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 dirServer = input("Introduce la direccion del servidor: ")
-server_address = (dirServer, 2225)
+server_address = (dirServer, 2226)
 sock.connect(server_address)
 
 queQuiereElCLiente = input("introduzca el numero que desea traducir: ")

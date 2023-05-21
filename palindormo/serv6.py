@@ -54,21 +54,27 @@ def server(server_address, server_port):
                 while True:
                     data = fichero.read(bufferSize)
                     #palindromo
-                    palabras = data.split()
+                    decodeData = data.decode("utf-8")
+                    palabras = decodeData.split()
                     #print(palabras)
                    
                     soloPalindromos = []
                     #identificar palindromos
+                   
                     for e in palabras:
-                  
+                    
                         if p1.esPalindromo(e):
                             
                             soloPalindromos.append(e)
+                   
+                    #soloPalindromosEncode = soloPalindromos.encode("utf8")
+                   
                    # print("array",soloPalindromos)
                    #envio palindromos
+                    conn.sendall("los palindromos que contiene el acrhivo son: ".encode("utf8") + b'\n')
                     for p in soloPalindromos:
                     #    print("envio cliente", p)
-                        conn.sendall(p + b'\n')
+                        conn.sendall(p.encode("utf8") + b'\n')
                     
                     #VOCALES
                     #
@@ -83,7 +89,9 @@ def server(server_address, server_port):
                         totalVocales += vocalTotalCadena
                         #print("total vocales leidas",j)
                     
+                    conn.sendall("las vocales que contiene el archivo son: ".encode("utf8") + b'\n') 
                     weo = str(totalVocales).encode("utf8")
+
                     conn.sendall(weo + b'\n')
                     #print("postenvio")
                     #numeros romanos
@@ -105,7 +113,7 @@ if __name__ == "__main__":
 
     if len(sys.argv) == 1:
         address = "0.0.0.0"
-        port = 5111
+        port = 5113
     elif len(sys.argv) == 3:
         address = sys.argv[1]
         port = int(sys.argv[2])

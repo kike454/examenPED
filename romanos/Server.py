@@ -6,7 +6,7 @@ p1 = KataRomanos()
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-server_address = ('127.0.0.1', 2225)
+server_address = ('127.0.0.1', 2226)
 print('Estableciendo conexión con {} en el puerto {}'.format(*server_address))
 sock.bind(server_address)
 
@@ -46,24 +46,27 @@ while True:
             
 
             
-            if contiene_numeros_y_letras:
-                mensaje = "ERROR"
-                
-                connection.sendall(mensaje.encode("utf8"))
-                
-                break
-            elif decodeData.isdigit():
+            if decodeData.isdigit():
                 numero_entero = int(decodeData)
                 numero_traducido = p1.entero_a_romano(numero_entero)
                 numero_convertido_en_cadena = str(numero_traducido)
                 numero_binario = numero_convertido_en_cadena.encode("utf8")
                 connection.sendall(numero_binario)
             
+           
+                
+                break
             elif es_numero_romano:
                 romanoConvertidoEntero =p1.romano_a_entero(decodeData)
                 entero_string = str(romanoConvertidoEntero)
                 entero_bytes = entero_string.encode("utf8")
                 connection.sendall(entero_bytes)
+            
+            elif contiene_numeros_y_letras:
+                
+                mensaje = "ERROR"
+                
+                connection.sendall(mensaje.encode("utf8"))
             #else:
             
 
